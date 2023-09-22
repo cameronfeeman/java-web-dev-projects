@@ -1,4 +1,4 @@
-package launchcode;
+package org.launchcode;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -17,6 +17,7 @@ public class MenuItem {
         this.price = price;
         this.category = category;
         this.dateAdded = LocalDate.now();
+    // Test isNew() to be false
 
     }
 
@@ -56,11 +57,20 @@ public class MenuItem {
         return dateAdded;
     }
 
+    //Special Methods
+    @Override
+    public String toString(){
+        String newText = isNew() ? " - NEW!" : "";
+        return name + newText + "\n" + description + "| $" + price;
+    }
 
+
+
+    //Define instance method isNew()
     boolean isNew() {
         LocalDate today = LocalDate.now();
         double daysBetween = getDateAdded().until(today, ChronoUnit.DAYS);
-        return daysBetween <90;
+        return daysBetween < 90;
 
     }
 }
